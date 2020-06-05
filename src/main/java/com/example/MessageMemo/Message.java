@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="T_MESSAGE")
-public class MessageMemo {
+public class Message {
 	@Id
 	@Column(name="M_ID" ,columnDefinition = "INT(11)")
 	private int m_id;

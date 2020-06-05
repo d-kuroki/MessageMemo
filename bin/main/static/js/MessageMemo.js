@@ -1,3 +1,5 @@
+console.log("読み込めました");
+
 //日付
 function setDate(){
 	let today = new Date();
@@ -10,6 +12,7 @@ function setDate(){
 	document.getElementById("today_day").value = nowDay;
 }
 
+//時間に初期値を設定(システム時間)、ラジオボタンの切り替え指定
 function setTime() {
     let today = new Date();
     let nowHour = today.getHours();
@@ -37,12 +40,22 @@ function setTime() {
 }
 
 //チェックボックス
-function(){
-	let uniquecheck = $('.singlecheck').find('input[type=checkbox]');
-	uniquecheck.click(function() {
-		let group = $(this).attr('data-scgroup');
-		uniquecheck.filter(function() {
-			return $(this).attr('data-scgroup') == group;
-		}).not(this).removeAttr('checked');
-	});
-});
+
+
+//テキストエリアを初期表示で読み取り専用にする
+function setOnly() {
+    let memo = document.getElementById("memo_text");
+    memo.readOnly = true;
+}
+
+// 「伝言があります」にチェックされているときに限り入力可
+function changeOnly() {
+    let memo = document.getElementById("memo_text");
+    let check_message = document.getElementById("check3");
+
+    if(check_message.checked == true) {
+        memo.readOnly = false;
+    } else {
+        memo.readOnly = true;
+    }
+}

@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>メッセージメモ登録画面</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
 	<link th:href="@{/css/sub.css}" rel="stylesheet" type="text/css">
-	<script src="@{/MessageMemo.js}" type="text/javascript"></script>
+	<script type="text/javascript" src="/js/MessageMemo.js"></script>
+	<title>メッセージメモ登録画面</title>
 </head>
-<body>
+
+<body onload="setDate(), setTime(), setOnly()">
 	<nav class="navar navbar-dark bg-success mb-3">
 		<a href="/msgmemo/inputForm" class="navbar-brand h1 col-md-11 col-md-offset-1 ">MESSAGE MEMO</a>
 
@@ -26,24 +27,30 @@
 		<div class="row">
 		<p>受電日時</p>
 			<div class="form-inline">
-				<input class="w-25" type="text" name="today_year" id="today_year" maxlength="4" required="required">
+				<input type="text" name="today_year" id="today_year" maxlength="4" required="required">
 				<label for="today_year">年</label>
- 				<input class="w-25" type="text" name="today_month" id="today_month" maxlength="2" required="required">
+ 				<input type="text" name="today_month" id="today_month" maxlength="2" required="required">
  				<label for="today_month">月</label>
- 				<input class="w-25" type="text" name="today_day" id="today_day" maxlength="2" required="required">
+ 				<input type="text" name="today_day" id="today_day" maxlength="2" required="required">
  				<label for="today_day">日</label>
 	 		</div>
 	 		
 	 		<!-- 時間-->
 	 		<div class="form-inline col-6 my-3 mx-auto">
+	 			<div>
 	 			<ul class="list-unstyled">
-	 				<li><input class="mx-3" type="radio" name="radio" id="radio_1">
+	 				<li>
+	 					<input class="mx-3" type="radio" name="radio" id="am">
 	 					<label class="col-12" for="radio_1">AM</label>
 	 				</li>
-	 				<li><input class="mx-3" type="radio" name="radio" id="radio_2">
+	 				<li>
+	 					<input class="mx-3" type="radio" name="radio" id="pm">
 	 					<label class="col-12" for="radio_2">PM</label>
 	 				</li>
 	 			</ul>
+	 			</div>
+	 			
+	 			<div>
 					<select id="hour" name="hour">
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -123,6 +130,7 @@
 						<option value="59">59</option>
 					</select>
 					<label for="minute">分</label>
+					</div>
 			</div>
 		</div>
 
@@ -151,7 +159,7 @@
 		</div>
 		
 		<div class="col-7 mx-auto">
-			<textarea name="memo" cols="60" rows="5" maxlength="256"></textarea>
+			<textarea name="memo" id="memo_text" cols="60" rows="5" maxlength="256"></textarea>
 		</div>
 		
 		<p>受電者</p>
