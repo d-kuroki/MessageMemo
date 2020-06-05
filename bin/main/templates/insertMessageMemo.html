@@ -4,43 +4,51 @@
 	<meta charset="UTF-8">
 	<title>メッセージメモ登録画面</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
-	<link th:href="@{/css/common.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/sub.css}" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="MessageMemo.js"></script>
 </head>
 <body>
+	<p>Hello World:D</p>
+
 	<nav class="navar navbar-dark bg-success mb-3">
-		<a href="/msgmemo/inputForm" class="navbar-brand h1 col-md-11 col-md-offset-1">MESSAGE MEMO</a>
+		<a href="/msgmemo/inputForm" class="navbar-brand h1 col-md-11 col-md-offset-1 ">MESSAGE MEMO</a>
 
 		<a class="btn btn-primary text-white text-right" onClick="window.print();">印刷</a>
 	</nav>
 	
 	
-	<div class="bg-secondary m-5 p-5">
-	<div class="col-10 mx-auto">
+	<div id="contents">
+	<div class="texts">
 		<!-- 宛先 -->
-		<span>
-			<input type="text" name="to_user">さん宛て
-		</span>
+			<input type="text" name="to_user" maxlength="40" required="required">さん宛て
 	</div>
 		
 		<!-- 年月日 -->
-	<div class="m-5 px-5">
+	<div class="col-5 mt-5 mx-auto">
 		<div class="row">
+		<p>受電日時</p>
 			<div class="form-inline">
-				<p class="col-6 mx-auto">受電日時</p>
-				<span>
-				<input class="w-25" type="text" name="today_year">年
- 				<input class="w-25" type="text" name="today_month">月
- 				<input class="w-25" type="text" name="today_day">日
+				<span class="col-7 mx-auto">
+				<input class="w-25" type="text" name="today_year" maxlength="4" required="required">
+				<a>年</a>
+ 				<input class="w-25" type="text" name="today_month" maxlength="2" required="required">
+ 				<a>月</a>
+ 				<input class="w-25" type="text" name="today_day" maxlength="2" required="required">
+ 				<a>日</a>
 	 			</span>
 	 		</div>
 	 		
 	 		<!-- 時間-->
-	 		<div class="form-inline col-5 mx-auto">
+	 		<div class="form-inline col-6 my-3 mx-auto">
 	 			<ul class="list-unstyled">
-	 				<li><input type="radio" name="radio" value="AM">AM</li>
-	 				<li><input type="radio" name="radio" value="PM">PM</li>
+	 				<li><input class="mx-3" type="radio" name="radio" value="AM">
+	 					<a>AM</a>
+	 				</li>
+	 				<li><input class="mx-3" type="radio" name="radio" value="PM">
+	 					<a>PM</a>
+	 				</li>
 	 			</ul>
-					<span>
+					<span class="ml-4 mb-2">
 					<select name="hour">
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -54,7 +62,8 @@
 						<option value="10">10</option>
 						<option value="11">11</option>
 						<option value="12">12</option>
-					</select>時
+					</select>
+					<a>時</a>
 				
 					<select name="minute">
 						<option value="0">0</option>
@@ -117,25 +126,29 @@
 						<option value="57">57</option>
 						<option value="58">58</option>
 						<option value="59">59</option>
-					</select>分
+					</select>
+					<a>分</a>
 					</span>
 			</div>
 		</div>
 
 		<!-- 会社名 -->
-		<div class="mt-4 col-6 mx-auto">
-			<p class="mr-4">会社名</p>
-			<input class="ml-3 col-11" type="text" name="company">
+		<p>会社名</p>
+		<div class="mt-2 col-7 mx-auto">
+			<select class="col-7" name="depart" style="width:400px">
+				<option></option>
+			</select>
 		</div>
 		
-		<div class="ml-5 mt-4 col-6 mx-auto">
-			<p>氏名</p>
-			<input class="ml-3 col-11" type="text" name="company_name">
+		<!-- 氏名 -->
+		<p>氏名</p>
+		<div class="mt-4 col-7 mx-auto">
+			<input class="mx-auto" type="text" name="company_name" size="50" maxlength="40" required="required">
 		</div>
 		
 		<!-- 対応 -->
-		<div class="ml-5 mt-4 col-6 mx-auto">
-			<p>対応</p>
+		<p>対応</p>
+		<div class="mt-4 col-7 mx-auto">
 			<ul class="list-unstyled">
 				<li class="m-2"><input type="checkbox" name="check1">もう一度お電話します</li>
 				<li class="m-2"><input type="checkbox" name="check2">折り返しお願いします</li>
@@ -143,17 +156,19 @@
 			</ul>
 		</div>
 		
-		<div class="col-6 mx-auto">
-			<textarea class="mt-4" name="memo" cols="60" rows="5"></textarea>
+		<div class="col-7 mx-auto">
+			<textarea name="memo" cols="60" rows="5" maxlength="256"></textarea>
 		</div>
 		
-		<div class="col-7 mx-auto">
-			<p>受電者</p>	
-			<input class="ml-5" type="text" name="from_user">
+		<p>受電者</p>
+		<div class="col-7 my-3 mx-auto">
+			<select name="depart" style="width:200px">
+				<option></option>
+			</select>
 		</div>
 		
 		<!-- 登録ボタン -->
-			<div class="col-2 mx-auto h-25 mt-5">
+			<div class="col-4 mx-auto h-25 mt-5">
 				<button type="button" class="btn btn-outline-success btn-block h-25">登録</button>
 			</div>
 	</div>

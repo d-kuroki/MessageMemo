@@ -3,5 +3,20 @@
 
 
 #contents{
-    background-color:#E1E1E1;
+	padding: 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-right: 100px;
+	margin-left:100px;
+    background-color: #E1E1E1;
+}
+
+.texts{
+	margin-right: 600px;
+	text-align:  center;  
+}
+
+p{
+	margin-left: 100px;
+	padding-top: 10px;
 }
