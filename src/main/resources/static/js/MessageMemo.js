@@ -1,17 +1,16 @@
 console.log("読み込めました");
 
-//日付
-function setDate(){
-	let today = new Date();
-	let nowYear = today.getFullyear();
-	let nowMonth = today.getMonth() + 1;
-	let nowDay = today.getDate();
-	
-	document.getElementById("today_year").value = nowYear; 
-	document.getElementById("today_month").value = nowMonth;
-	document.getElementById("today_day").value = nowDay;
-}
+//年月日に初期値を設定(システム日付)
+function setDate() {
+    let today = new Date();
+    let nowYear = today.getFullYear();
+    let nowMonth = today.getMonth() + 1;
+    let nowDay = today.getDate();
 
+    document.getElementById("today_year").value = nowYear;
+    document.getElementById("today_month").value = nowMonth;
+    document.getElementById("today_day").value = nowDay;
+}
 //時間に初期値を設定(システム時間)、ラジオボタンの切り替え指定
 function setTime() {
     let today = new Date();
@@ -24,7 +23,7 @@ function setTime() {
         } else {
             document.getElementById("hour").value = nowHour;
         }
-        let check_am = document.getElementById("radio_1");
+        let check_am = document.getElementById("am");
         check_am.checked = true;
     } else {
         if(nowHour >= 13) {
@@ -32,7 +31,7 @@ function setTime() {
         } else {
             document.getElementById("hour").value = nowHour;
         }
-        let check_pm = document.getElementById("radio_2");
+        let check_pm = document.getElementById("pm");
         check_pm.checked = true;
     }
 
@@ -40,22 +39,84 @@ function setTime() {
 }
 
 //チェックボックス
+//function checkbox(){
+//    document.forms['form'].elements['check1'].onclick=ckbox1;
+//    document.forms['form'].elements['check2'].onclick=ckbox2;
+//    document.forms['form'].elements['check3'].onclick=ckbox3;
+//}
+//function ckbox1(){
+//    document.forms['form'].elements['check2'].checked=false;
+//    document.forms['form'].elements['check3'].checked=false;
+// }
+// function ckbox2(){
+//    document.forms['form'].elements['check1'].checked=false;
+//    document.forms['form'].elements['check3'].checked=false;
+// }
+// function ckbox3(){
+//    document.forms['form'].elements['check1'].checked=false;
+//    document.forms['form'].elements['check2'].checked=false;
+// }
+//  window.addEventListener('DOMContentLoaded',checkbox,false);
 
-
-//テキストエリアを初期表示で読み取り専用にする
+//テキストエリアを初期表示で読み取り専用にする。「伝言があります」にチェックされているときに限り入力可。
 function setOnly() {
     let memo = document.getElementById("memo_text");
     memo.readOnly = true;
 }
 
-// 「伝言があります」にチェックされているときに限り入力可
-function changeOnly() {
-    let memo = document.getElementById("memo_text");
-    let check_message = document.getElementById("check3");
-
-    if(check_message.checked == true) {
-        memo.readOnly = false;
-    } else {
-        memo.readOnly = true;
-    }
+function changeOnly1() {
+	let memo = document.getElementById("memo_text");
+	let check_message1 = document.getElementById("check1");
+	
+	if(check_message1.checked == true) {
+		memo.readOnly = true;
+		memo.value = "";
+	}
 }
+
+function changeOnly2() {
+	let memo = document.getElementById("memo_text");
+	let check_message2 = document.getElementById("check2");
+	if(check_message2.checked == true) {
+		memo.readOnly = true;
+		memo.value = "";
+	}
+}
+
+function changeOnly3() {
+	let memo = document.getElementById("memo_text");
+	let check_message3 = document.getElementById("check3");
+	
+	if(check_message3.checked == true) {
+		memo.readOnly = false;
+		memo.required = true;
+	} else {
+		memo.readOnly = true;
+		memo.required = false;
+	}
+}
+
+function resetPage() {
+	document.form.reset();
+}
+
+$(function(){
+	$('input[type=checkbox]').on('click',function(){
+		if ($(this).prop('checked')){
+			$('input[type=checkbox]').prop('checked',false);
+			$(this).prop('checked',true);
+		}
+	});
+});
+
+let checkedNum;
+
+$('#regist').on('click', function() {
+	checkedNum = $('.check:checked').length;
+	if(checkedNum > 0) {
+		$('#check_alert').text('');
+	} else {
+		$('#check_alert').text('対応のいずれかにチェックしてください');
+		
+	}
+});

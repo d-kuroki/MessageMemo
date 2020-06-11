@@ -21,10 +21,10 @@ public class Message {
 	private String receiver_cd;
 	
 	@Column(name="RECEIV_TIME" ,columnDefinition = "datetime")
-	private String receiv_time;
+	private Timestamp receiv_time;
 
 	@Column(name="CUSTMER_CD" ,columnDefinition = "VARCHAR(4)")
-	private Timestamp custmer_cd;
+	private String custmer_cd;
 
 	@Column(name="SENDER" ,columnDefinition = "VARCHAR(40)")
 	private String sender;
@@ -67,16 +67,16 @@ public class Message {
 		this.receiver_cd = receiver_cd;
 	}
 	
-	public String getReceiv_time() {
+	public Timestamp getReceiv_time() {
 		return receiv_time;
 	}
-	public void setReceiv_time(String receiv_time) {
+	public void setReceiv_time(Timestamp receiv_time) {
 		this.receiv_time = receiv_time;
 	}
-	public Timestamp getCustmer_cd() {
+	public String getCustmer_cd() {
 		return custmer_cd;
 	}
-	public void setCustmer_cd(Timestamp custmer_cd) {
+	public void setCustmer_cd(String custmer_cd) {
 		this.custmer_cd = custmer_cd;
 	}
 	public String getSender() {
@@ -102,8 +102,8 @@ public class Message {
 	public void setAll(  int m_id
 						,String to_name
 						,String receiver_cd
-						,String receiv_time
-						,Timestamp custmer_cd
+						,Timestamp receiv_time
+						,String custmer_cd
 						,String sender
 						,String message_cd
 						,String memo
@@ -120,7 +120,7 @@ public class Message {
 	}
 	
 	
-
+	
 	public Timestamp getCreate_date() {
 		return create_date;
 	}
