@@ -95,7 +95,7 @@ function changeOnly3() {
 		memo.required = false;
 	}
 }
-
+//
 function resetPage() {
 	document.form.reset();
 }
