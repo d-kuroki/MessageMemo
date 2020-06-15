@@ -8,19 +8,22 @@
 	<script type="text/javascript" src="/js/MessageMemo.js"></script>
 	<title>登録フォーム画面</title>
 </head>
+
 <body onload="setDate(), setTime(), setOnly()">
 
-	<nav class="navar navbar-dark bg-success">
-		<a href="/msgmemo/inputForm" class="navbar-brand h1 col-md-11 col-md-offset-1 ">MESSAGE MEMO</a>
+	<nav class="navar bg-success">
+		<a href="/msgmemo/inputForm" class="text-white h1 ">MESSAGE MEMO</a>
 
-		<a class="btn btn-primary text-white text-right" onClick="window.print();">印刷</a>
+		<input id="print" type="button" value="印刷" class="btn btn-primary text-white ml-20" onclick="window.print();" >
 	</nav>
-
+	
+	<!-- メッセージ表示 -->
+	<p th:text="${msg}"></p>
+	<p id="check_alert"></p>
 	
 	<div id="contents">
-	<p id="check_alert"></p>
-	<form method="post" action="inputForm">
 	
+	<form method="post" action="/msgmemo/inputForm">
 	<div class="texts">
 		<!-- 宛先 -->
 			<input type="text" name="to_name" maxlength="40" required="required">
@@ -29,34 +32,34 @@
 		
 		<!-- 年月日 -->
 	<div class="mx-auto">
-		<div class="row">
+		
 		<p>受電日時</p>
+		<div id="dayTime">
 			<div class="form-inline" id="days">
-				<input id="today_year" type="text"  name="receiv_time"  maxlength="4"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+				<input id="today_year"  type="text"  name="today_year"  maxlength="4"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
 				<em>年</em>
- 				<input id="today_month" type="text"  name="receiv_time"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+ 				<input id="today_month"  type="text"  name="today_month"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
  				<em>月</em>
- 				<input id="today_day" type="text"  name="receiv_time"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+ 				<input id="today_day"  type="text"  name="today_day"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
  				<em>日</em>
 	 		</div>
 	 		
 	 		<!-- 時間-->
 	 		<div class="form-inline col-5 my-2 mx-auto">
-	 			<div>
 	 			<ul class="list-unstyled">
 	 				<li>
-	 					<input type="radio" name="receiv_time" id="am" required="required">
+	 					<input type="radio" value="radio" name="radio" id="am" required="required">
 	 					<em>AM</em>
 	 				</li>
 	 				<li>
-	 					<input type="radio" name="receiv_time" id="pm" required="required">
+	 					<input type="radio" name="radio" id="pm" required="required">
 	 					<em>PM</em>
 	 				</li>
 	 			</ul>
-	 			</div>
+	 			
 	 			
 	 			<div class="ml-3 mb-3">
-					<select id="hour"  name="receiv_time" required="required">
+					<select id="hour"  name="hour" required="required">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -72,7 +75,7 @@
 					</select>
 					<em>時</em>
 				
-					<select id="minute"  name="receiv_time" required="required">
+					<select id="minute"  name="minute" required="required">
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -136,13 +139,14 @@
 					</select>
 					<em>分</em>
 					</div>
+					</div>
 			</div>
-		</div>
+		
 
 		<!-- 会社名 -->
 		<p>会社名</p>
 		<div class="mt-2 col-7 mx-auto">
-			<select class="col-7" id="company_select" name="custmer_cd" style="width:400px">
+			<select class="col-7" id="company_select" name="custmer_cd">
 					<option value=""></option>
 			        <option th:each="customer : ${customerlist}" th:object="${customer}" th:value="*{c_num}" th:text="*{c_name}"></option>
 			</select>
@@ -151,12 +155,13 @@
 		<!-- 氏名 -->
 		<p>氏名</p>
 		<div class="mt-4 col-7 mx-auto">
-			<input class="mx-auto" type="text" id="company_name" name="sender" size="50" maxlength="40" required="required">
+			<input class="mx-auto" type="text" id="company_name" name="sender"  maxlength="40" required="required">
 		</div>
 		
 		<!-- 対応 -->
 		<p>対応</p>
-		<div class="mt-4 col-7 mx-auto">
+		<div class="mt-2 col-7 mx-auto">
+			<div class='div_class'>
 			<ul class="list-unstyled">
 				<li class="m-2">
 				<input id="check1" value="1" class="check" type="checkbox" name="message_cd" onclick="changeOnly1()">
@@ -173,17 +178,18 @@
 				<label for="check3">伝言あります</label>
 				</li>
 			</ul>
+			</div>
 		</div>
 
 		<p id="check_alert"></p>
 		
 		<div class="textarea">
-			<textarea name="memo" id="memo_text" cols="60" rows="5" maxlength="256"></textarea>
+			<textarea name="memo" id="memo_text" maxlength="256"></textarea>
 		</div>
 		
 		<p>受電者</p>
 		<div class="col-7 my-3 mx-auto">
-			<select class="form-control-sm" name="receiver_cd" id="reception_select" style="width:200px" required="required">
+			<select class="form-control-sm" name="receiver_cd" id="reception_select"  required="required">
 				<option value=""></option>
 				<option th:each="employee : ${employeelist}" th:object="${employee}" th:value="*{e_num}" th:text="*{e_name}"></option>
 			</select>
@@ -191,7 +197,7 @@
 		
 		<!-- 登録ボタン -->
 			<div class="col-4 mx-auto h-25 mt-5">
-				<input id="regist" type="submit" value="登録" class="btn-outline-success btn-lg px-5 mb-4">
+				<input id='send' type="submit" value="登録" class="btn-outline-success btn-lg px-5 mb-4" >
 			</div>
 	</div>
 	</form>

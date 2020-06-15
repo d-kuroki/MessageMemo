@@ -95,11 +95,9 @@ function changeOnly3() {
 		memo.required = false;
 	}
 }
-//
-function resetPage() {
-	document.form.reset();
-}
 
+
+//チェックの条件必須
 $(function(){
 	$('input[type=checkbox]').on('click',function(){
 		if ($(this).prop('checked')){
@@ -107,16 +105,32 @@ $(function(){
 			$(this).prop('checked',true);
 		}
 	});
+
+
+	let checkedNum;
+
+	$('#send').click(function() {
+		let checkedNum = $('.div_class :checked').length;
+		if(checkedNum == 0) {
+			$('#check_alert').text('対応のいずれかにチェックしてください');
+			return false;
+		}
+	});
 });
 
-let checkedNum;
+//$(function(){
+//	  $('.send').click(function(){
+//	    var check_count = $('.div_class :checked').length;
+//	    if (check_count == 0 ){
+//	    $('#check_alert').text('対応のいずれかにチェックしてください');
+//	      return false;
+//	    }
+//	  });
+//	});
 
-$('#regist').on('click', function() {
-	checkedNum = $('.check:checked').length;
-	if(checkedNum > 0) {
-		$('#check_alert').text('');
-	} else {
-		$('#check_alert').text('対応のいずれかにチェックしてください');
-		
-	}
-});
+
+//function resetPage() {
+//	document.form.reset();
+//}
+
+//
