@@ -46,7 +46,7 @@ public class MessageMemoController {
 													, @RequestParam String today_year
 													, @RequestParam String today_month
 													, @RequestParam String today_day
-													, @RequestParam String radio
+													, @RequestParam (value="radio",required=false)int radio
 													, @RequestParam String hour
 													, @RequestParam String minute
 													, @RequestParam String custmer_cd //発信会社
@@ -54,7 +54,6 @@ public class MessageMemoController {
 													, @RequestParam String message_cd
 													, @RequestParam String memo){
 
-		
 	
 //	自動採番
 		int count =messageMemoRepository.countT_message();
@@ -65,17 +64,15 @@ public class MessageMemoController {
 			m_id = count + 1;
 		}
 		
-		
 //	Pmの時に時間表記が13以上になる処理
-//		int timePm = Integer.parseInt(hour);
-//		
-//		if(timePm.equals() {
-//			
-//		}else {
-//			
-//		}
-
-		
+		if(radio == 1) {
+			int h = Integer.parseInt(hour);
+			h = h + 12;
+			hour = String.valueOf(h);
+		}else if (radio == 0) {
+			int h = Integer.parseInt(hour);
+			hour = String.valueOf(h);
+		}
 		
 		
 //String型からTimestamp型に変更する	

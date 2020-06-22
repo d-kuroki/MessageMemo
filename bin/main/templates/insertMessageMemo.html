@@ -9,17 +9,20 @@
 	<title>登録フォーム画面</title>
 </head>
 
-<body onload="setDate(), setTime(), setOnly()">
+<body  onload="setDate(), setTime(), setOnly()">
 
+	<header>
 	<nav class="navar bg-success">
 		<a href="/msgmemo/inputForm" class="text-white h1 ">MESSAGE MEMO</a>
 
 		<input id="print" type="button" value="印刷" class="btn btn-primary text-white ml-20" onclick="window.print();" >
 	</nav>
+	</header>
 	
 	<!-- メッセージ表示 -->
-	<p th:text="${msg}"></p>
+	<p id="msg" th:text="${msg}"></p>
 	<p id="check_alert"></p>
+	<!-- <p id="noInput" style="display:none;">いずれかにチェックを入れてください</p> -->
 	
 	<div id="contents">
 	
@@ -43,16 +46,17 @@
  				<input id="today_day"  type="text"  name="today_day"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
  				<em>日</em>
 	 		</div>
-	 		
+	 		</div>
 	 		<!-- 時間-->
-	 		<div class="form-inline col-5 my-2 mx-auto">
+	 		<div id="times">
+	 		<div class="form-inline my-2">
 	 			<ul class="list-unstyled">
 	 				<li>
-	 					<input type="radio" value="radio" name="radio" id="am" required="required">
+	 					<input type="radio" value="0" name="radio" id="am" required="required">
 	 					<em>AM</em>
 	 				</li>
 	 				<li>
-	 					<input type="radio" name="radio" id="pm" required="required">
+	 					<input type="radio" value="1" name="radio" id="pm" required="required">
 	 					<em>PM</em>
 	 				</li>
 	 			</ul>
@@ -111,7 +115,7 @@
 						<option value="32">32</option>
 						<option value="33">33</option>
 						<option value="34">34</option>
-						<option value="35">19</option>
+						<option value="35">35</option>
 						<option value="36">36</option>
 						<option value="37">37</option>
 						<option value="38">38</option>
@@ -140,12 +144,12 @@
 					<em>分</em>
 					</div>
 					</div>
-			</div>
+					</div>
 		
 
 		<!-- 会社名 -->
 		<p>会社名</p>
-		<div class="mt-2 col-7 mx-auto">
+		<div class="col-7 mx-auto">
 			<select class="col-7" id="company_select" name="custmer_cd">
 					<option value=""></option>
 			        <option th:each="customer : ${customerlist}" th:object="${customer}" th:value="*{c_num}" th:text="*{c_name}"></option>
@@ -154,41 +158,38 @@
 		
 		<!-- 氏名 -->
 		<p>氏名</p>
-		<div class="mt-4 col-7 mx-auto">
+		<div class="col-7 mx-auto">
 			<input class="mx-auto" type="text" id="company_name" name="sender"  maxlength="40" required="required">
 		</div>
 		
 		<!-- 対応 -->
 		<p>対応</p>
-		<div class="mt-2 col-7 mx-auto">
 			<div class='div_class'>
 			<ul class="list-unstyled">
-				<li class="m-2">
+				<li>
 				<input id="check1" value="1" class="check" type="checkbox" name="message_cd" onclick="changeOnly1()">
 				<label for="check1">もう一度お電話します</label>
 				</li>
 				
-				<li class="m-2">
+				<li>
 				<input id="check2" value="2" class="check" type="checkbox" name="message_cd" onclick="changeOnly2()">
 				<label for="check2">折り返しお願いします</label>
 				</li>
 				
-				<li class="m-2">
+				<li>
 				<input id="check3" value="3" class="check" type="checkbox" name="message_cd" onclick="changeOnly3()">
 				<label for="check3">伝言あります</label>
 				</li>
 			</ul>
 			</div>
-		</div>
 
-		<p id="check_alert"></p>
 		
 		<div class="textarea">
-			<textarea name="memo" id="memo_text" maxlength="256"></textarea>
+			<textarea name="memo" id="memo_text" maxlength="256" required="required"></textarea>
 		</div>
 		
 		<p>受電者</p>
-		<div class="col-7 my-3 mx-auto">
+		<div class="col-7 mx-auto">
 			<select class="form-control-sm" name="receiver_cd" id="reception_select"  required="required">
 				<option value=""></option>
 				<option th:each="employee : ${employeelist}" th:object="${employee}" th:value="*{e_num}" th:text="*{e_name}"></option>
@@ -196,8 +197,8 @@
 		</div>
 		
 		<!-- 登録ボタン -->
-			<div class="col-4 mx-auto h-25 mt-5">
-				<input id='send' type="submit" value="登録" class="btn-outline-success btn-lg px-5 mb-4" >
+			<div class="col-4 mx-auto h-25 mt-3">
+				<input id='send' type="submit" value="登録" class="btn-outline-success btn-lg px-5 mb-4">
 			</div>
 	</div>
 	</form>

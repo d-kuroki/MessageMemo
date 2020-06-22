@@ -1,20 +1,22 @@
 @charset "UTF-8";
 
+
+
+
 a{
-	margin-left: 10px;
+	margin-left: 1%;
 	margin-right: 50%;
 }
 
 #print{
 	float: right;
-	margin-right: 10px;
+	margin-right: 1%;
 	margin-top: 3px;
 }
 
 #contents{
 	padding-top: 2%;
-	padding-left:5%;
-	margin-bottom: 10px;
+	padding-left:15%;
 	margin-right: 5%;
 	margin-left:5%;
     background-color: #E1E1E1;
@@ -29,14 +31,12 @@ a{
 }
 
 .texts{
-	margin-left: 5%;
-	margin-bottom: 5%;
+	margin-bottom: 4%;
 	
 }
 
 p{
 	margin-left: 17%;
-	padding-top: 10px;
 }
 
 em{
@@ -69,4 +69,12 @@ textarea{
 	margin-left: 22%;
     width: 35%;
     height: 100px;
+}
+
+ul{
+	margin-left: 22%;
+}
+
+#times{
+	margin-left: 5%;
 }
