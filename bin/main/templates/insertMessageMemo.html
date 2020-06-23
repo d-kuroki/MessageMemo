@@ -39,11 +39,11 @@
 		<p>受電日時</p>
 		<div id="dayTime">
 			<div class="form-inline" id="days">
-				<input id="today_year"  type="text"  name="today_year"  maxlength="4"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+				<input id="today_year" type="tel"  name="today_year"  maxlength="4"  pattern="\d{1,4}" required="required">
 				<em>年</em>
- 				<input id="today_month"  type="text"  name="today_month"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+ 				<input id="today_month"  type="text"  name="today_month"  maxlength="2"  pattern="\d{1,2}"  required="required">
  				<em>月</em>
- 				<input id="today_day"  type="text"  name="today_day"  maxlength="2"  oninput="value = value.replace(/[^0-9]+/i,'');"  required="required">
+ 				<input id="today_day"  type="text"  name="today_day"  maxlength="2"  pattern="\d{1,2}"  required="required">
  				<em>日</em>
 	 		</div>
 	 		</div>

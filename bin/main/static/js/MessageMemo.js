@@ -146,6 +146,10 @@ $('#send').click(function() {
 });
 
 
+
+
+
+
 //function resetPage() {
 //	document.form.reset();
 //}
