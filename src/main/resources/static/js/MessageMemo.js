@@ -145,16 +145,3 @@ $('#send').click(function() {
 	}
 });
 
-
-
-
-
-
-//function resetPage() {
-//	document.form.reset();
-//}
-
-//function submit(){
-//	document.getElementById("msg").innerHTML-"";
-//}
-

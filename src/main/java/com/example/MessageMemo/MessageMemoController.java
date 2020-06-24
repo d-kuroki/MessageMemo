@@ -3,15 +3,16 @@ package com.example.MessageMemo;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class MessageMemoController {
@@ -22,6 +23,8 @@ public class MessageMemoController {
 	private EmployeeRepository employeeRepository;
     @Autowired
     private MessageMemoRepository messageMemoRepository;
+    @Autowired
+    private historyRepository historyRepository;
 	
 	@RequestMapping("/msgmemo/inputForm")
     public String index(Model model) {
@@ -37,6 +40,19 @@ public class MessageMemoController {
 		// DBアクセスTop画面を表示
         return "insertMessageMemo";
 	}
+	
+	@GetMapping(path="/msgmemo/history")
+	public String list(Model model) {
+		
+		// hisoryの全データを取得
+		List<history> historyList = historyRepository.historia();	
+		
+		// モデルに属性追加
+		model.addAttribute("historylist",historyList);
+		return "history";
+	}
+
+	
 	
 //	登録処理
 	@PostMapping(path="/msgmemo/inputForm")
@@ -81,6 +97,7 @@ public class MessageMemoController {
 				String str = today_year + "-" + today_month + "-" + today_day + " " + hour + ":" + minute;
 				Date date = sdFormat.parse(str);
 				Timestamp ts = new Timestamp(date.getTime());
+				
 				
 				Message messageMemoAddData = new Message();
 		

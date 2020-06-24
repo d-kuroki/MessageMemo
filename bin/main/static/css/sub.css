@@ -15,8 +15,9 @@ a{
 }
 
 #contents{
+	height: 850px;
 	padding-top: 2%;
-	padding-left:15%;
+	padding-left:10%;
 	margin-right: 5%;
 	margin-left:5%;
     background-color: #E1E1E1;
