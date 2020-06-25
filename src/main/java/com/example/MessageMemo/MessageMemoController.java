@@ -98,7 +98,6 @@ public class MessageMemoController {
 				Date date = sdFormat.parse(str);
 				Timestamp ts = new Timestamp(date.getTime());
 				
-				
 				Message messageMemoAddData = new Message();
 		
 		messageMemoAddData.setAll(m_id, to_name, receiver_cd, ts, custmer_cd, sender, message_cd, memo);
