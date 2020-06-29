@@ -10,11 +10,7 @@ function getRowCol(){
 	  //結果表示
 	  console.log("行数:" + row + " 列数:" + col);
 	  
-	  if(row == 14){
-		  document.getElementById("overflow-y: auto").value = false;
-	  }else if(row > 14){
-		  document.getElementById("overflow-y: auto").value = true;
-	  }
+
 	}
 
 

@@ -29,7 +29,7 @@ public class history {
 	//受電日時フォーマット
 	public String dateFormat() {
 		
-		SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+		SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		String formatedDate = simpledateformat.format(this.receive_time);
 		
 		return formatedDate;
