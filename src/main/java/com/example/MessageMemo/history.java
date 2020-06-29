@@ -58,6 +58,13 @@ public class history {
 		this.sender = sender;
 	}
 	public String getMessage_cd() {
+		if(message_cd.equals("1")) {
+			setMessage_cd("もう一度お願いします");
+		}else if(message_cd.equals("2")) {
+			setMessage_cd("折り返しお願いします");
+		}else if(message_cd.equals("3")){
+			setMessage_cd("伝言あります");
+		}
 		return message_cd;
 	}
 	public void setMessage_cd(String message_cd) {

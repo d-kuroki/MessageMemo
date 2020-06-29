@@ -85,7 +85,7 @@ ul{
 /*histryのcss*/
 
 #historyMain{
-	height: 1000px;
+	height: 850px;
 	padding-top: 2%;
 	padding-left:10%;
 	padding-right:10%;
@@ -95,20 +95,92 @@ ul{
     background-color: #E1E1E1;
 }
 
+/*
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 
+
+
+thead{
+	width: 98.3%;
+	display: block;
+	
+}
+tbody{
+	height: 654px;
+	display: block;
+	overflow: visible scroll;
+	
+}
+
+
+
+.thc1{
+	width: 3%;
+}
+.thc2{
+	width: 15%;
+}
+.thc3 {
+  width: 13%;
+}
+.thc4 {
+  width: 34%;
+}
+.thc5{
+	width: 20%;
+}
+.thc6{
+	width: 15%;
+}
+
+
+
+
+.tdc1 {
+  width: 3%;
+}
+.tdc2 {
+  width: 15%;
+}
+.tdc3{
+	width: 13%;
+}
+.tdc4 {
+  width: 20%;
+}
+.tdc5 {
+  width: 14%;
+}
+.tdc6 {
+  width: 19%;
+}
+*/
+
+div style{
+	display: none;
+}
+
+
+#historyMain{
+	background-color:#EEEEEE;
+
+	height:850px;
+	margin-right:3%;
+	margin-left:7%;
+	margin-bottom:2%;
+}
 
 .sticky_table thead th {
-	background-color: black;
   /* 縦スクロール時に固定する */
   position: -webkit-sticky;
   position: sticky;
-  top: 0;
-  /* tbody内のセルより手前に表示する */
-  z-index: 1;
+  background:black;
+  color: white;
+  top: -1px;
+   z-index: -1px;
 }
-.sticky_table_wrapper {
-  overflow-y: scroll;
- 
-  height: 750px;
-}
+
 

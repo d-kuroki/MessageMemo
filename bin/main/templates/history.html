@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
 	<link th:href="@{/css/sub.css}" rel="stylesheet" type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/history.js"></script>
 	<title>伝言履歴画面</title>
 </head>
-<body  onload="setMessage（）">
+<body onload="getRowCol();">
 	<header>
 		<nav class="navar bg-success mb-5">
 		<a href="/msgmemo/inputForm" class="text-white h1 ">MESSAGE MEMO</a>
@@ -22,51 +22,38 @@
 		
 		<input type="button" value="CSV" class="btn btn-success text-white mb-3">
 		
-		<div class="sticky_table_wrapper">
-		<table class="table table-striped table-bordered table-light table-hover sticky_table mx-auto">
-			<thead class="text-white">
+		<div class="col-auto ml-5 mr-5 ">
+		<div style="height:717px; width:100%; overflow-y: auto;">
+		<table id="tbl1" class="table table-striped table-bordered table-light table-hover sticky_table ">
+			<thead>
 				<tr>
-					<th width="5%">ID</th>
-					<th width="15%">受電日時</th>
-					<th width="15%">To</th>
-					<th colspan="2" width="35%">From</th>
-					<th id="memos" width="15%">伝言</th>
-					<th width="15%">受電者</th>
+					<th>ID</th>
+					<th>受電日時</th>
+					<th>To</th>
+					<th colspan="2">From</th>
+					<th>伝言</th>
+					<th>受電者</th>
+					
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr th:each="history : ${historylist}" th:object="${history}">
-					<td th:text="*{m_id}"></td>	
-					<td th:text="*{receive_time}"></td>		
-					<td th:text="*{to_name}"></td>
-					<td width="20%" th:text="*{c_name}"></td>
-					<td width="15%" th:text="*{sender}"></td>
-					<td id="memos" th:text="*{message_cd}"></td>
-					<td th:text="*{e_name}"></td>
+					<td nowrap th:text="*{m_id}"></td>	
+					<td nowrap th:text="*{receive_time}"></td>		
+					<td nowrap th:text="*{to_name}"></td>
+					<td nowrap th:text="*{c_name}"></td>
+					<td nowrap th:text="*{sender}"></td>
+					<td nowrap th:text="*{message_cd}"></td>
+					<td nowrap th:text="*{e_name}"></td>
 				</tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>			
+		
 			</tbody>
 		</table>	
 		</div>
-	
-		
-	</div>	
+		</div>
+		</div>
+			
 
 </body>
 </html>

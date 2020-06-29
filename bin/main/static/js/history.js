@@ -1,14 +1,28 @@
 console.log("読み込めました");
 
-function setMessage(){
-	let memory = memo.getmessage_cd();
-	
-	if(memory == 1){
-		document.getElementById("memos").value = もう一度お電話します;
-	}else　if(memory == 2){
-		document.getElementById("memos").value = 折り返しお願いします;
-	}else if(memory == 3){
-		document.getElementById("memos").value = 伝言あります;
+function getRowCol(){
+	  //行数取得
+	  let row = tbl1.rows.length -1;
+	 
+	  //列数取得（rowsの引数には行インデックス番号を指定します）
+	  let col = tbl1.rows[1].cells.length;
+	 
+	  //結果表示
+	  console.log("行数:" + row + " 列数:" + col);
+	  
+	  if(row == 14){
+		  document.getElementById("overflow-y: auto").value = false;
+	  }else if(row > 14){
+		  document.getElementById("overflow-y: auto").value = true;
+	  }
 	}
-}
+
+
+
+//
+//	$('#data-table').DataTable({
+//	    //デフォルトの表示件数を100件に設定。
+//		pageLength: 14
+//	
+//	});
 
